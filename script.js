@@ -278,7 +278,7 @@ document.addEventListener('click', function(event) {
 
 
 // Reset semua dropdown dan input dengan animasi fly-out
-document.getElementById('resetDropdowns').addEventListener('click', function() {
+document.getElementById('reset-dropdowns').addEventListener('click', function() {
     // Pilih semua elemen image-display dan dropdown-items secara bersamaan
     const imageDisplays = document.querySelectorAll('[id^="image-display-"]');
     const searchInputs = document.querySelectorAll('[id^="search-"]');
@@ -304,7 +304,7 @@ document.getElementById('resetDropdowns').addEventListener('click', function() {
 
 
 // Fungsi untuk mereset nickname
-document.getElementById('resetNickname').addEventListener('click', () => {
+document.getElementById('reset-nickname').addEventListener('click', () => {
     document.querySelectorAll(".nickname-field").forEach(input => {
         input.value = '';
         document.getElementById("output-" + input.id.replace("input-", "")).textContent = '';
@@ -326,7 +326,7 @@ function updateNickname() {
 
 
 // Fungsi untuk menukar semua (nama tim, nickname, gambar tim, dan status checkbox 1-3 dengan 4-6)
-document.getElementById('switchTeam').addEventListener('click',function () {
+document.getElementById('switch-team').addEventListener('click',function () {
     //tukar nickname
     for (let i = 1; i <= 5; i++) {
         let blue = document.getElementById(`input-${i}`);
@@ -351,13 +351,13 @@ document.getElementById('switchTeam').addEventListener('click',function () {
     
     // Tukar status checkbox dan visibilitas gambar tambahan
     for (let i = 1; i <= 3; i++) {
-        const checkboxA = document.getElementById(`checkbox-${i}`);
-        const checkboxB = document.getElementById(`checkbox-${i + 3}`);
+        const checkboxA = document.getElementById(`win-check-${i}`);
+        const checkboxB = document.getElementById(`win-check-${i + 3}`);
         const extraImageA = document.getElementById(`extraImage-${i}`);
-        const extraImageB = document.getElementById(`extraImage- ${i + 3}`);
+        const extraImageB = document.getElementById(`extraImage-${i + 3}`);
         
         // Tukar status checkbox
-        [checkboxA.checked, checkboxB.checked] = [checkboxA.checked, checkboxB.checked];
+        [checkboxA.checked, checkboxB.checked] = [checkboxB.checked, checkboxA.checked];
         
         // Tukar tampilan gambar berdasarkan checkbox
         extraImageA.style.display = checkboxA.checked ? "block" : "none";
@@ -367,6 +367,8 @@ document.getElementById('switchTeam').addEventListener('click',function () {
 
 
 // Fungsi untuk mengupdate nama tim yang ditampilkan
+
+
 function UpdateTeamName() {
     const team1 = document.getElementById('team-1').value;
     const team2 = document.getElementById('team-2').value;
@@ -375,7 +377,7 @@ function UpdateTeamName() {
 }
 
 // Fungsi untuk mereset gambar, nama tim, dan checkbox ke kondisi awal
-document.getElementById('resetTeam').addEventListener('click',function(){
+document.getElementById('reset-team').addEventListener('click',function(){
     document.getElementById('team-1').value = "Team 1";
     document.getElementById('team-2').value = "Team 2";
     UpdateTeamName();
@@ -388,19 +390,21 @@ document.getElementById('resetTeam').addEventListener('click',function(){
     
     // Reset checkbox dan gambar tambahan
     for (let i = 1; i <= 6; i++) {
-        document.getElementById(`checkbox-${i}`).checked = false;
+        document.getElementById(`win-check-${i}`).checked = false;
         document.getElementById(`extraImage-${i}`).style.display = "none";
     }
 });
 
 
+// Fungsi untuk menampilkan atau menyembunyikan gambar berdasarkan checkbox
+const checkboxes = document.querySelectorAll('.win-check')
+checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('click',function(){
+        const image = document.getElementById(`extraImage-${checkbox.id.replace('win-check-','')}`);
+        image.style.display = checkbox.checked ? "block" : "none";
+    })
+});
 
-// Fungsi untuk menampilkan atau menyembunyikan gambar berdasarkan checkbox -----------------------------------------
-function toggleImage(imageId) {
-    const image = document.getElementById(imageId);
-    const checkbox = document.getElementById(`checkbox-${imageId.slice(-1)}`);
-    image.style.display = checkbox.checked ? "block" : "none";
-}
 
 //fungsi display nama turnament
 const tournamentnameInput = document.getElementById('tournamentnamemid');
