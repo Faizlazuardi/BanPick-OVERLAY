@@ -135,7 +135,7 @@ filtersHero.forEach(filterhero => {
     const id = filterhero.id.replace('search-', '');
     const action = id < 11 ? 'pick' : 'ban';
     const searchInput = document.getElementById(`search-${id}`);
-    searchInput.addEventListener('input', function() {
+    searchInput.addEventListener('input', function InputHero() {
         filterDropdown(id, action);
     });
 });
@@ -165,7 +165,7 @@ function UpdateHeroImage(hero, id, action) {
     const existingImage = imageDisplay.querySelector('img');
     
     id = (action === 'pick') ? ShiftHero(id) : id;
-
+    
     if (existingImage) {
         // Jika ada gambar yang sudah ada, tambahkan animasi fly-out
         existingImage.classList.add('fly-out');
@@ -190,19 +190,20 @@ function DisplayHeroImage(hero, id, action) {
 }
 
 
-// fungsi untuk up pick hero (bug id 6)
+// fungsi untuk up pick hero (bug id 6)-------------------------------------------------------------------
 function ShiftHero(id) {
     let shiftId = id;
-    // Cek slot di atas
     while (shiftId > 1 && shiftId !== 6) {
+        console.log("Initial Shift ID:", shiftId);
         shiftId--;
-        console.log(id)
         const upHero = document.getElementById(`search-${shiftId}`);
         if (upHero.value) {
             shiftId++;
             break;
         }
     }
+    console.log("Final Shift ID after loop:", shiftId);
+
     if (shiftId !== id) {
         // Hapus input hero saat ini
         const inputHero = document.getElementById(`search-${id}`);
@@ -215,7 +216,8 @@ function ShiftHero(id) {
         
         if (currentNickname && shiftNickname) {
             [shiftNickname.value, currentNickname.value] = [currentNickname.value, shiftNickname.value]
-            updateNickname();
+            updateNickname(id);
+            updateNickname(shiftId);
         }
         return shiftId;
     }
@@ -226,7 +228,7 @@ function ShiftHero(id) {
 //fungsi untuk swap heropick
 const swaperElements = document.querySelectorAll('.swaper');
 swaperElements.forEach(swaperElement => {
-    swaperElement.addEventListener('click', function () {
+    swaperElement.addEventListener('click', function SwapHero() {
         const checkboxesBlue = document.querySelectorAll('.blue-swaper');
         const checkboxesRed = document.querySelectorAll('.red-swaper');
         const selectedBlue = Array.from(checkboxesBlue).filter(cb => cb.checked);
@@ -251,7 +253,8 @@ swaperElements.forEach(swaperElement => {
         const Nickname1 = document.getElementById(`input-${id1}`);
         const Nickname2 = document.getElementById(`input-${id2}`);
         [Nickname1.value, Nickname2.value] = [Nickname2.value, Nickname1.value];
-        updateNickname();
+        updateNickname(id1);
+        updateNickname(id2);
         
         //menukar hero
         const hero1 = document.getElementById(`image-display-${id1}`)
@@ -263,12 +266,13 @@ swaperElements.forEach(swaperElement => {
 
 
 // Auto close dropdown
+
 document.addEventListener('click', function(event) {
-    const dropdownItems = document.querySelectorAll('.dropdown-items');
     const searchInputs = document.querySelectorAll('.dropdown');
+    const dropdownItems = document.querySelectorAll('.dropdown-items');
     
     let isClickInsideInput = Array.from(searchInputs).some(input => input.contains(event.target));
-    
+    console.log(Array.from(searchInputs));
     if (!isClickInsideInput) {
         dropdownItems.forEach(dropdown => {
             dropdown.innerHTML = '';
@@ -304,36 +308,38 @@ document.getElementById('reset-dropdowns').addEventListener('click', function() 
 
 
 // Fungsi untuk mereset nickname
-document.getElementById('reset-nickname').addEventListener('click', () => {
+document.getElementById('reset-nickname').addEventListener('click', function ResetNickname() {
     document.querySelectorAll(".nickname-field").forEach(input => {
         input.value = '';
         document.getElementById("output-" + input.id.replace("input-", "")).textContent = '';
     });
 });
 
- // Fungsi untuk mengupdate output nickname (buat menjadi foreach)
-for (let i = 1; i <= 10; i++) {
-    const inputElement = document.getElementById(`input-${i}`);
-    inputElement?.addEventListener("input", updateNickname);
-}
+ // Fungsi untuk mengupdate output nickname
+document.querySelectorAll('.nickname-field').forEach(input =>{
+    const inputElement = document.getElementById(input.id);
+    inputElement?.addEventListener("input", function() {
+        let id = input.id.replace('input-','')
+        updateNickname(id);
+    });
+})
 
-function updateNickname() {
-    for (let i = 1; i <= 10; i++) {
-        const inputText = document.getElementById(`input-${i}`).value;
-        document.getElementById(`output-${i}`).textContent = `${inputText}`;
-    }
+function updateNickname(id) {
+    const inputText = document.getElementById(`input-${id}`).value;
+    document.getElementById(`output-${id}`).textContent = inputText;
 }
 
 
 // Fungsi untuk menukar semua (nama tim, nickname, gambar tim, dan status checkbox 1-3 dengan 4-6)
-document.getElementById('switch-team').addEventListener('click',function () {
+document.getElementById('switch-team').addEventListener('click', function() {
     //tukar nickname
     for (let i = 1; i <= 5; i++) {
         let blue = document.getElementById(`input-${i}`);
         let red = document.getElementById(`input-${i + 5}`);
         [blue.value, red.value] = [red.value, blue.value]
+        updateNickname(i);
+        updateNickname(i+5);
     };
-    updateNickname();
     
     // Tukar nama tim
     const team1 = document.getElementById('team-1');
@@ -366,18 +372,27 @@ document.getElementById('switch-team').addEventListener('click',function () {
 });
 
 
-// Fungsi untuk mengupdate nama tim yang ditampilkan
+// Fungsi untuk mengupdate nama tim yang ditampilkan (buat lebih ringkas) --------------------------------
+document.querySelectorAll('.teams').forEach(team => {
+    team.addEventListener('input', function() {
+        const teamId = team.id.replace('team-', '');
+        const teamName = team.value;
+        document.getElementById(`team-name-display-${teamId}`).textContent = teamName;
+    });
+});
+
+function UpdateTeamName(){
+    document.querySelectorAll('.teams').forEach(team => {
+        const teamId = team.id.replace('team-', '');
+        const teamName = team.value;
+        document.getElementById(`team-name-display-${teamId}`).textContent = teamName;
+    });
+};
 
 
-function UpdateTeamName() {
-    const team1 = document.getElementById('team-1').value;
-    const team2 = document.getElementById('team-2').value;
-    document.getElementById('team-name-display-1').textContent = team1;
-    document.getElementById('team-name-display-2').textContent = team2;
-}
 
 // Fungsi untuk mereset gambar, nama tim, dan checkbox ke kondisi awal
-document.getElementById('reset-team').addEventListener('click',function(){
+document.getElementById('reset-team').addEventListener('click', function(){
     document.getElementById('team-1').value = "Team 1";
     document.getElementById('team-2').value = "Team 2";
     UpdateTeamName();
@@ -399,7 +414,7 @@ document.getElementById('reset-team').addEventListener('click',function(){
 // Fungsi untuk menampilkan atau menyembunyikan gambar berdasarkan checkbox
 const checkboxes = document.querySelectorAll('.win-check')
 checkboxes.forEach(checkbox => {
-    checkbox.addEventListener('click',function(){
+    checkbox.addEventListener('click', function(){
         const image = document.getElementById(`extraImage-${checkbox.id.replace('win-check-','')}`);
         image.style.display = checkbox.checked ? "block" : "none";
     })
@@ -414,7 +429,7 @@ tournamentnameInput.addEventListener('input', function() {
 });
 
 
-// Fungsi untuk memuat logo tim dari file lokal ---------------------------------------------------------------------
+// Fungsi untuk memuat logo tim dari file lokal ----------------------------------------------------------
 function loadLogo(event, imgId) {
     const img = document.getElementById(imgId);
     img.src = URL.createObjectURL(event.target.files[0]);
