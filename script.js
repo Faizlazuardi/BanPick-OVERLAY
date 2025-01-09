@@ -190,14 +190,14 @@ function DisplayHeroImage(hero, id, action) {
 }
 
 
-// fungsi untuk up pick hero (bug id 6)-------------------------------------------------------------------
+// fungsi untuk up pick hero (bug id 6) ----------------------------------------------------------------------------------------------
 function ShiftHero(id) {
     let shiftId = id;
     while (shiftId > 1 && shiftId !== 6) {
         console.log("Initial Shift ID:", shiftId);
         shiftId--;
-        const upHero = document.getElementById(`search-${shiftId}`);
-        if (upHero.value) {
+        const existingImage = document.getElementById(`image-display-${shiftId}`).querySelector('img');
+        if (existingImage) {
             shiftId++;
             break;
         }
@@ -208,7 +208,8 @@ function ShiftHero(id) {
         // Hapus input hero saat ini
         const inputHero = document.getElementById(`search-${id}`);
         inputHero.value = '';
-        document.getElementById(`dropdown-items-${id}`).innerHTML = '' ;//sembunyikan dropdown
+        
+        document.getElementById(`dropdown-items-${id}`).innerHTML = '' ; //sembunyikan dropdown
         
         // Menukar nickname
         const currentNickname = document.getElementById(`input-${id}`);
@@ -257,22 +258,32 @@ swaperElements.forEach(swaperElement => {
         updateNickname(id2);
         
         //menukar hero
-        const hero1 = document.getElementById(`image-display-${id1}`)
-        const hero2 = document.getElementById(`image-display-${id2}`)
-        console.log(hero1)
-        console.log(hero2)
+        const existingImage1 = document.getElementById(`image-display-${id1}`).querySelector('img');
+        const existingImage2 = document.getElementById(`image-display-${id2}`).querySelector('img');
+        if(existingImage1 && existingImage2){
+            //menukar input
+            const input1 = document.getElementById(`search-${id1}`);
+            const input2 = document.getElementById(`search-${id2}`);
+            [input1.value, input2.value] = [input2.value, input1.value]
+
+            // Mencari hero berdasarkan nilai input
+            const hero1 = heroes.find(hero => hero.name === input1.value);
+            const hero2 = heroes.find(hero => hero.name === input2.value);
+            
+            // Memperbarui gambar hero
+            UpdateHeroImage(hero1, id1, 'pick')
+            UpdateHeroImage(hero2, id2, 'pick')
+        }
     });
 });
 
 
-// Auto close dropdown
-
+// Auto close dropdown (logic menjadi per item) ---------------------------------------------------------------------------------------
 document.addEventListener('click', function(event) {
     const searchInputs = document.querySelectorAll('.dropdown');
     const dropdownItems = document.querySelectorAll('.dropdown-items');
     
     let isClickInsideInput = Array.from(searchInputs).some(input => input.contains(event.target));
-    console.log(Array.from(searchInputs));
     if (!isClickInsideInput) {
         dropdownItems.forEach(dropdown => {
             dropdown.innerHTML = '';
@@ -287,7 +298,7 @@ document.getElementById('reset-dropdowns').addEventListener('click', function() 
     const imageDisplays = document.querySelectorAll('[id^="image-display-"]');
     const searchInputs = document.querySelectorAll('[id^="search-"]');
     const dropdownItems = document.querySelectorAll('[id^="dropdown-items-"]');
-
+    
     // Iterasi setiap elemen yang ditemukan
     imageDisplays.forEach((imageDisplay, index) => {
         const image = imageDisplay.querySelector('img');
@@ -295,7 +306,7 @@ document.getElementById('reset-dropdowns').addEventListener('click', function() 
             // Tambahkan kelas animasi fly-out
             image.classList.add('fly-out');
         }
-
+        
         // Hapus nilai input dan dropdown setelah animasi selesai
         setTimeout(() => {
             // Reset nilai input dan dropdown untuk elemen yang bersesuaian
@@ -351,9 +362,6 @@ document.getElementById('switch-team').addEventListener('click', function() {
     const img1 = document.getElementById('logo-1');
     const img2 = document.getElementById('logo-2');
     [img1.src, img2.src] = [img2.src, img1.src];
-    const nameimg1 = document.getElementById('file-1');
-    const nameimg2 = document.getElementById('file-2');
-    [nameimg1.value, nameimg2.value] = [nameimg2.value, nameimg1.value];
     
     // Tukar status checkbox dan visibilitas gambar tambahan
     for (let i = 1; i <= 3; i++) {
@@ -372,23 +380,18 @@ document.getElementById('switch-team').addEventListener('click', function() {
 });
 
 
-// Fungsi untuk mengupdate nama tim yang ditampilkan (buat lebih ringkas) --------------------------------
+// Fungsi untuk mengupdate nama tim yang ditampilkan
 document.querySelectorAll('.teams').forEach(team => {
-    team.addEventListener('input', function() {
-        const teamId = team.id.replace('team-', '');
-        const teamName = team.value;
-        document.getElementById(`team-name-display-${teamId}`).textContent = teamName;
-    });
+    team.addEventListener('input', UpdateTeamName);
 });
 
-function UpdateTeamName(){
+function UpdateTeamName() {
     document.querySelectorAll('.teams').forEach(team => {
         const teamId = team.id.replace('team-', '');
         const teamName = team.value;
         document.getElementById(`team-name-display-${teamId}`).textContent = teamName;
     });
-};
-
+}
 
 
 // Fungsi untuk mereset gambar, nama tim, dan checkbox ke kondisi awal
@@ -400,8 +403,8 @@ document.getElementById('reset-team').addEventListener('click', function(){
     document.getElementById('logo-1').src = "https://via.placeholder.com/300x200?text=Image+1";
     document.getElementById('logo-2').src = "https://via.placeholder.com/300x200?text=Image+2";
     
-    document.getElementById('file-1').value = "";
-    document.getElementById('file-2').value = "";
+    document.getElementById('file-logo-1').value = "";
+    document.getElementById('file-logo-2').value = "";
     
     // Reset checkbox dan gambar tambahan
     for (let i = 1; i <= 6; i++) {
@@ -428,9 +431,11 @@ tournamentnameInput.addEventListener('input', function() {
     tournamentnameOutput.textContent = tournamentnameInput.value;
 });
 
-
-// Fungsi untuk memuat logo tim dari file lokal ----------------------------------------------------------
-function loadLogo(event, imgId) {
-    const img = document.getElementById(imgId);
-    img.src = URL.createObjectURL(event.target.files[0]);
-}
+// Fungsi untuk memuat logo tim dari file lokal
+document.querySelectorAll('.file-logo').forEach(input => {
+    input.addEventListener('change', function(event) {
+        const imgId = input.id.replace('file-logo-', 'logo-');
+        const img = document.getElementById(imgId);
+        img.src = URL.createObjectURL(event.target.files[0]);
+    });
+});
