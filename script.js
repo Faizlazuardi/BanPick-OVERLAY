@@ -284,11 +284,11 @@ document.addEventListener('click', function(event) {
     const dropdownItems = document.querySelectorAll('.dropdown-items');
     
     let isClickInsideInput = Array.from(searchInputs).some(input => input.contains(event.target));
-    if (!isClickInsideInput) {
-        dropdownItems.forEach(dropdown => {
+    dropdownItems.forEach(dropdown => {
+        if (!isClickInsideInput) {
             dropdown.innerHTML = '';
-        });
-    }
+        }
+    });
 });
 
 
