@@ -129,13 +129,12 @@ const heroes = [
     { name: 'Zilong', pickImg: 'Assets/HeroPick/zilong.png', banImg: 'Assets/Icon/Zilong.png' }
 ];
 
-//  input pencarian hero
-const filtersHero = document.querySelectorAll('.dropdown');
-filtersHero.forEach(filterhero => {
-    const id = filterhero.id.replace('search-', '');
-    const action = id < 11 ? 'pick' : 'ban';
-    const searchInput = document.getElementById(`search-${id}`);
-    searchInput.addEventListener('input', function InputHero() {
+//  input pencarian hero  (bug id 6) ----------------------------------------------------------------------------------------------
+const searchInputs = document.querySelectorAll('.dropdown');
+searchInputs.forEach(searchInput => {
+    searchInput.addEventListener('input', function() {
+        let id = searchInput.id.replace('search-', '');
+        let action = id < 11 ? 'pick' : 'ban';
         filterDropdown(id, action);
     });
 });
@@ -167,14 +166,11 @@ function UpdateHeroImage(hero, id, action) {
     id = (action === 'pick') ? ShiftHero(id) : id;
     
     if (existingImage) {
-        // Jika ada gambar yang sudah ada, tambahkan animasi fly-out
         existingImage.classList.add('fly-out');
-        // Ganti gambar setelah animasi fly-out selesai (0.5 detik)
         setTimeout(() => {
             DisplayHeroImage(hero, id, action);
         }, 500);
     } else {
-        // Jika belum ada gambar, langsung tampilkan gambar baru
         DisplayHeroImage(hero, id, action);
     }
 }
@@ -190,11 +186,10 @@ function DisplayHeroImage(hero, id, action) {
 }
 
 
-// fungsi untuk up pick hero (bug id 6) ----------------------------------------------------------------------------------------------
+// fungsi untuk up pick hero
 function ShiftHero(id) {
     let shiftId = id;
-    while (shiftId > 1 && shiftId !== 6) {
-        console.log("Initial Shift ID:", shiftId);
+    while (shiftId > 1 && shiftId != 6) {
         shiftId--;
         const existingImage = document.getElementById(`image-display-${shiftId}`).querySelector('img');
         if (existingImage) {
@@ -202,9 +197,8 @@ function ShiftHero(id) {
             break;
         }
     }
-    console.log("Final Shift ID after loop:", shiftId);
-
-    if (shiftId !== id) {
+    
+    if (shiftId != id) {
         // Hapus input hero saat ini
         const inputHero = document.getElementById(`search-${id}`);
         inputHero.value = '';
@@ -235,7 +229,7 @@ swaperElements.forEach(swaperElement => {
         const selectedBlue = Array.from(checkboxesBlue).filter(cb => cb.checked);
         const selectedRed = Array.from(checkboxesRed).filter(cb => cb.checked);
         let id1, id2;
-
+        
         let selectedArray = selectedBlue.length === 2 ? selectedBlue : selectedRed.length === 2 ? selectedRed : null;
         if (selectedArray) {
             id1 = selectedArray[0].id.replace('swap-', '');
@@ -243,7 +237,7 @@ swaperElements.forEach(swaperElement => {
         } else {
             return;
         }
-
+        
         //reset swaper
         const swaper1 = document.getElementById(`swap-${id1}`);
         const swaper2 = document.getElementById(`swap-${id2}`);
@@ -265,7 +259,7 @@ swaperElements.forEach(swaperElement => {
             const input1 = document.getElementById(`search-${id1}`);
             const input2 = document.getElementById(`search-${id2}`);
             [input1.value, input2.value] = [input2.value, input1.value]
-
+            
             // Mencari hero berdasarkan nilai input
             const hero1 = heroes.find(hero => hero.name === input1.value);
             const hero2 = heroes.find(hero => hero.name === input2.value);
