@@ -228,16 +228,21 @@ body {
     align-items: center;
 }
 
+.image-container img {
+    justify-content: space-around;
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
 .vs-logo{
     font-size: 3rem;
     display: flex;
     align-items: center;
 }
 
-
 .team-win-bar{
     display: flex;
-    margin: 1px;
 }
 
 .win-bar{
@@ -386,21 +391,4 @@ body {
         opacity: 1;
         transform: translateY(650px);
     }
-}
-
-
-
-/*Style untuk gambar Team*/
-.image-container img {
-    justify-content: space-around;
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-}
-
-
-/*Sytle untuk gambar winbar*/
-.input-nickname label{
-    display: inline-block;
-    width: 8px;
 }
