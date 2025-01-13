@@ -129,7 +129,7 @@ const heroes = [
     { name: 'Zilong', pickImg: 'Assets/HeroPick/zilong.png', banImg: 'Assets/Icon/Zilong.png' }
 ];
 
-//  input pencarian hero  (bug id 6) ----------------------------------------------------------------------------------------------
+//  input pencarian hero
 const searchInputs = document.querySelectorAll('.dropdown');
 searchInputs.forEach(searchInput => {
     searchInput.addEventListener('input', function() {
@@ -244,13 +244,6 @@ swaperElements.forEach(swaperElement => {
         swaper1.checked = false
         swaper2.checked = false
         
-        //menukar nickname
-        const Nickname1 = document.getElementById(`input-${id1}`);
-        const Nickname2 = document.getElementById(`input-${id2}`);
-        [Nickname1.value, Nickname2.value] = [Nickname2.value, Nickname1.value];
-        updateNickname(id1);
-        updateNickname(id2);
-        
         //menukar hero
         const existingImage1 = document.getElementById(`image-display-${id1}`).querySelector('img');
         const existingImage2 = document.getElementById(`image-display-${id2}`).querySelector('img');
@@ -313,12 +306,21 @@ document.getElementById('reset-dropdowns').addEventListener('click', function() 
 
 
 // Fungsi untuk mereset nickname
-document.getElementById('reset-nickname').addEventListener('click', function ResetNickname() {
-    document.querySelectorAll(".nickname-field").forEach(input => {
-        input.value = '';
-        document.getElementById("output-" + input.id.replace("input-", "")).textContent = '';
-    });
+document.getElementById('reset-nickname-1').addEventListener('click', function() {
+    for(let i = 1; i <= 5; i++){
+        document.getElementById("input-" + i).value = '';
+        document.getElementById("output-" + i).textContent = '';
+    }
 });
+
+
+document.getElementById('reset-nickname-2').addEventListener('click', function() {
+    for(let i = 6; i <= 10; i++){
+        document.getElementById("input-" + i).value = '';
+        document.getElementById("output-" + i).textContent = '';
+    }
+});
+
 
  // Fungsi untuk mengupdate output nickname
 document.querySelectorAll('.nickname-field').forEach(input =>{
@@ -394,8 +396,8 @@ document.getElementById('reset-team').addEventListener('click', function(){
     document.getElementById('team-2').value = "Team 2";
     UpdateTeamName();
     
-    document.getElementById('logo-1').src = "https://via.placeholder.com/300x200?text=Image+1";
-    document.getElementById('logo-2').src = "https://via.placeholder.com/300x200?text=Image+2";
+    document.getElementById('logo-1').src = "Assets/Other/80x80.png";
+    document.getElementById('logo-2').src = "Assets/Other/80x80.png";
     
     document.getElementById('file-logo-1').value = "";
     document.getElementById('file-logo-2').value = "";
