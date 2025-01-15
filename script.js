@@ -129,7 +129,7 @@ const heroes = [
     { name: 'Zilong', pickImg: 'Assets/HeroPick/zilong.png', banImg: 'Assets/Icon/Zilong.png' }
 ];
 
-//  input pencarian hero
+//  Input pencarian hero
 const searchInputs = document.querySelectorAll('.dropdown');
 searchInputs.forEach(searchInput => {
     searchInput.addEventListener('input', function() {
@@ -186,7 +186,7 @@ function DisplayHeroImage(hero, id, action) {
 }
 
 
-// fungsi untuk up pick hero
+// Fungsi untuk up pick hero
 function ShiftHero(id) {
     let shiftId = id;
     while (shiftId > 1 && shiftId != 6) {
@@ -220,7 +220,7 @@ function ShiftHero(id) {
 }
 
 
-//fungsi untuk swap heropick
+// Fungsi untuk swap heropick
 const swaperElements = document.querySelectorAll('.swaper');
 swaperElements.forEach(swaperElement => {
     swaperElement.addEventListener('click', function SwapHero() {
@@ -426,7 +426,7 @@ checkboxes.forEach(checkbox => {
 });
 
 
-//fungsi display nama turnament
+// Fungsi display nama turnament
 const tournamentnameInput = document.getElementById('tournamentnamemid');
 tournamentnameInput.addEventListener('input', function() {
     const tournamentnameOutput = document.getElementById('tournamentnameOutput');
