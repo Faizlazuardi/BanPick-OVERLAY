@@ -29,7 +29,7 @@ body {
 .inputs-container{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
 }
 
 .nickname-reset-container{
@@ -219,7 +219,7 @@ body {
     width: 250px;
     height: 80px;
     display: flex;
-    justify-content: center;
+    justify-content:space-between;
 }
 
 .blue-info,.red-info{
@@ -290,7 +290,7 @@ body {
 }
 
 .nickname-field{
-    width: 120px;
+    width: 130px;
     padding: 8px;
 }
 
@@ -344,7 +344,7 @@ body {
 
 .dropdown-items {
     position: absolute;
-    width: 100px;
+    width: 140px;
     max-height: 100px;
     overflow-y: auto;
     background-color: #fff;

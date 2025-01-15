@@ -149,7 +149,7 @@ function filterDropdown(id, action) {
     heroes
         .filter(hero => hero.name.toLowerCase().startsWith(searchInput))
         .forEach(hero => {
-            const item = document.createElement('div');
+            const item = document.createElement('option');
             item.classList.add('dropdown-item');
             item.textContent = hero.name;
             item.onclick = () => UpdateHeroImage(hero, id, action);
@@ -265,19 +265,25 @@ swaperElements.forEach(swaperElement => {
 });
 
 
-// Auto close dropdown (logic menjadi per item) ---------------------------------------------------------------------------------------
+// Auto close dropdown
 document.addEventListener('click', function(event) {
     const searchInputs = document.querySelectorAll('.dropdown');
     const dropdownItems = document.querySelectorAll('.dropdown-items');
     
     let isClickInsideInput = Array.from(searchInputs).some(input => input.contains(event.target));
-    dropdownItems.forEach(dropdown => {
-        if (!isClickInsideInput) {
+    
+    if (!isClickInsideInput) {
+        dropdownItems.forEach(dropdown => {
             dropdown.innerHTML = '';
-        }
-    });
+        });
+    } else {
+        searchInputs.forEach((input, index) => {
+            if (input !== event.target) {
+                dropdownItems[index].innerHTML = '';
+            }
+        });
+    }
 });
-
 
 // Reset semua dropdown dan input dengan animasi fly-out
 document.getElementById('reset-dropdowns').addEventListener('click', function() {
