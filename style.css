@@ -13,11 +13,13 @@ body {
     background-color: #00ff62;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
-.container {
+.overlay {
     width: 1500px;
     height: 275px;
+    margin: 15px 0;
     display: grid;
     grid-template-areas: "team-1 ban-1 tournament-name ban-2 team-2"
                          "pick-1 pick-1 tournament-info pick-2 pick-2";
@@ -212,7 +214,7 @@ body {
 }
 
 
-/*Control Panel*/
+/*Button Panel*/
 .title {
     text-align: center;
 }
@@ -243,13 +245,13 @@ body {
 /*Input global*/
 .all-inputs {
     display: flex;
-    gap: 50px;
+    gap: 25px;
 }
 
 .inputs-container {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 25px;
 }
 
 /* Dropdown */
@@ -349,13 +351,17 @@ body {
 }
 
 /*Control*/
-.teams, .checkbox-container label {
+.teams, .file-logo{
     padding: 8px;
-    font-size: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    width: 200px;
+}
+.win-label{
+    padding: 8px;
     border-radius: 4px;
     border: 1px solid #ddd;
 }
-
 
 /* Animasi Fly-In dan Fly-Out */
 .fly-in {

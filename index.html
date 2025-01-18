@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS -->
     <link href="style.css" rel="stylesheet">
+    <!--Javascript-->
+    <script src="script.js" defer></script>
     <title>MLBB DRAFT AND BAN TOOL (NO API)</title>
 </head>
 <body>
-    <div class="container">
+    <div class="overlay">
         <!-- Tour Info -->
         <div class="tournament-name">
             <p class="tournamentnamemid" id="tournamentnameOutput"></p>
@@ -207,252 +210,12 @@
         </div>
         
         <div class="all-inputs">
-            <!-- Input untuk Blue team 1-5 -->
-            <div class="inputs-container"><h2>Blue Nickname</h2>
-                <div class="input-nickname">
-                    <input class="nickname-field" id="input-1" type="text" placeholder="Blue Side Nickname 1"><br>
-                </div>
-                <div class="input-nickname">
-                    <input class="nickname-field" id="input-2" type="text" placeholder="Blue Side Nickname 2"><br>
-                </div>
-                <div class="input-nickname">
-                    <input class="nickname-field" id="input-3" type="text" placeholder="Blue Side Nickname 3"><br>
-                </div>
-                <div class="input-nickname">
-                    <input class="nickname-field" id="input-4" type="text" placeholder="Blue Side Nickname 4"><br>
-                </div>
-                <div class="input-nickname">
-                    <input class="nickname-field" id="input-5" type="text" placeholder="Blue Side Nickname 5"><br>
-                </div>
-                <div class="nickname-reset-container">
-                    <button class="control-button" id="reset-nickname-1">Reset Nickname</button>
-                </div>
-            </div>
-            
-            <div class="inputs-container"><h2>Blue Pick</h2> 
-                <!-- Setiap dropdown diberi ID unik berdasarkan indeks -->
-                <div class="pick-container">
-                    <div class="dropdown-container">
-                        <input class="dropdown" id="search-1" type="text" placeholder="Blue Side Pick 1">
-                        <section class="dropdown-items" id="dropdown-items-1"></section>
-                    </div>
-                    <div class="swap-button">
-                        <input class="swaper blue-swaper" id="swap-1" type="checkbox">
-                        <label class="border-box" for="swap-1">
-                            <div class="arrow">↑↓</div>
-                        </label>
-                    </div>
-                </div>
-                
-                <div class="pick-container">
-                    <div class="dropdown-container">
-                        <input class="dropdown" id="search-2" type="text" placeholder="Blue Side Pick 2">
-                        <section class="dropdown-items" id="dropdown-items-2"></section>
-                    </div>
-                    <div class="swap-button">
-                        <input class="swaper blue-swaper" id="swap-2" type="checkbox">
-                        <label class="border-box" for="swap-2">
-                            <div class="arrow">↑↓</div>
-                        </label>
-                    </div>
-                </div>
-                
-                <div class="pick-container">
-                    <div class="dropdown-container">
-                        <input class="dropdown" id="search-3" type="text" placeholder="Blue Side Pick 3.">
-                        <section class="dropdown-items" id="dropdown-items-3"></section>
-                    </div>
-                    <div class="swap-button">
-                        <input class="swaper blue-swaper" id="swap-3" type="checkbox">
-                        <label class="border-box" for="swap-3">
-                            <div class="arrow">↑↓</div>
-                        </label>
-                    </div>
-                </div>
-                
-                <div class="pick-container">
-                    <div class="dropdown-container">
-                        <input class="dropdown" id="search-4" type="text" placeholder="Blue Side Pick 4.">
-                        <section class="dropdown-items" id="dropdown-items-4"></section>
-                    </div>
-                    <div class="swap-button">
-                        <input class="swaper blue-swaper" id="swap-4" type="checkbox">
-                        <label class="border-box" for="swap-4">
-                            <div class="arrow">↑↓</div>
-                        </label>
-                    </div>
-                </div>
-                
-                <div class="pick-container">                
-                    <div class="dropdown-container">
-                        <input class="dropdown" id="search-5" type="text" placeholder="Blue Side Pick 5.">
-                        <section class="dropdown-items" id="dropdown-items-5"></section>
-                    </div>
-                    <div class="swap-button">
-                        <input class="swaper blue-swaper" id="swap-5" type="checkbox">
-                        <label class="border-box" for="swap-5">
-                            <div class="arrow">↑↓</div>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Input untuk Red Team 6-10 -->
-            <div class="inputs-container"><h2>Red Nickname</h2>
-                <div class="input-nickname">
-                    <input class="nickname-field" id="input-6" type="text" placeholder="Red Side Nickname 1"><br>
-                </div>
-                <div class="input-nickname">
-                    <input class="nickname-field" id="input-7" type="text" placeholder="Red Side Nickname 2"><br>
-                </div>
-                <div class="input-nickname">
-                    <input class="nickname-field" id="input-8" type="text" placeholder="Red Side Nickname 3"><br>
-                </div>
-                <div class="input-nickname">
-                    <input class="nickname-field" id="input-9" type="text" placeholder="Red Side Nickname 4"><br>
-                </div>
-                <div class="input-nickname">
-                    <input class="nickname-field" id="input-10" type="text" placeholder="Red Side Nickname 5"><br>
-                </div>
-                <div class="nickname-reset-container">
-                    <button class="control-button" id="reset-nickname-2">Reset Nickname</button>
-                </div>
-            </div>
-            
-            <div class="inputs-container"><h2>Red Pick</h2> 
-                <!-- Setiap dropdown diberi ID unik berdasarkan indeks -->
-                <div class="pick-container">
-                    <div class="dropdown-container">
-                        <input class="dropdown" id="search-6" type="text" placeholder="Red Side Pick 1">
-                        <section class="dropdown-items" id="dropdown-items-6"></section>
-                    </div>
-                    <div class="swap-button">
-                        <input class="swaper red-swaper" id="swap-6" type="checkbox">
-                        <label class="border-box" for="swap-6">
-                            <div class="arrow">↑↓</div>
-                        </label>
-                    </div>
-                </div>
-                <div class="pick-container">
-                    <div class="dropdown-container">
-                        <input class="dropdown" id="search-7" type="text" placeholder="Red Side Pick 2">
-                        <section class="dropdown-items" id="dropdown-items-7"></section>
-                    </div>
-                    <div class="swap-button">
-                        <input class="swaper red-swaper" id="swap-7" type="checkbox">
-                        <label class="border-box" for="swap-7">
-                            <div class="arrow">↑↓</div>
-                        </label>
-                    </div>
-                </div>
-                
-                <div class="pick-container">
-                    <div class="dropdown-container">
-                        <input class="dropdown" id="search-8" type="text" placeholder="Red Side Pick 3.">
-                        <section class="dropdown-items" id="dropdown-items-8"></section>
-                    </div>
-                    <div class="swap-button">
-                        <input class="swaper red-swaper" id="swap-8" type="checkbox">
-                        <label class="border-box" for="swap-8">
-                            <div class="arrow">↑↓</div>
-                        </label>
-                    </div>
-                </div>
-                
-                <div class="pick-container">
-                    <div class="dropdown-container">
-                        <input class="dropdown" id="search-9" type="text" placeholder="Red Side Pick 4.">
-                        <section class="dropdown-items" id="dropdown-items-9"></section>
-                    </div>
-                    <div class="swap-button">
-                        <input class="swaper red-swaper" id="swap-9" type="checkbox">
-                        <label class="border-box" for="swap-9">
-                            <div class="arrow">↑↓</div>
-                        </label>
-                    </div>
-                </div>
-                
-                <div class="pick-container">
-                    <div class="dropdown-container">
-                        <input class="dropdown" id="search-10" type="text" placeholder="Red Side Pick 5.">
-                        <section class="dropdown-items" id="dropdown-items-10"></section>
-                    </div>
-                    <div class="swap-button">
-                        <input class="swaper red-swaper" id="swap-10" type="checkbox">
-                        <label class="border-box" for="swap-10">
-                            <div class="arrow">↑↓</div>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            
-            <!--Input untuk ban blue team 11-15 -->
-            <div class="inputs-container"><h2>Blue Ban</h2> 
-                <!-- Setiap dropdown diberi ID unik berdasarkan indeks -->
-                <div class="dropdown-container">
-                    <input class="dropdown" id="search-11" type="text" placeholder="Blue Side ban 1">
-                    <section class="dropdown-items" id="dropdown-items-11"></section>
-                </div>
-                
-                <div class="dropdown-container">
-                    <input class="dropdown" id="search-12" type="text" placeholder="Blue Side ban 2">
-                    <section class="dropdown-items" id="dropdown-items-12"></section>
-                </div>
-                
-                <div class="dropdown-container">
-                    <input class="dropdown" id="search-13" type="text" placeholder="Blue Side ban 3.">
-                    <section class="dropdown-items" id="dropdown-items-13"></section>
-                </div>
-                
-                <div class="dropdown-container">
-                    <input class="dropdown" id="search-14" type="text" placeholder="Blue Side ban 4.">
-                    <section class="dropdown-items" id="dropdown-items-14"></section>
-                </div>
-                
-                <div class="dropdown-container">
-                    <input class="dropdown" id="search-15" type="text" placeholder="Blue Side ban 5.">
-                    <section class="dropdown-items" id="dropdown-items-15"></section>
-                </div>
-            </div>
-            
-            <!-- Input untuk blue team 16-20-->
-            <div class="inputs-container"><h2>Red Ban</h2> 
-                <!-- Setiap dropdown diberi ID unik berdasarkan indeks -->
-                <div class="dropdown-container">
-                    <input class="dropdown" id="search-16" type="text" placeholder="Red Side ban 1">
-                    <section class="dropdown-items" id="dropdown-items-16"></section>
-                </div>
-                
-                <div class="dropdown-container">
-                    <input class="dropdown" id="search-17" type="text" placeholder="Red Side ban 2">
-                    <section class="dropdown-items" id="dropdown-items-17"></section>
-                </div>
-                
-                <div class="dropdown-container">
-                    <input class="dropdown" id="search-18" type="text" placeholder="Red Side ban 3.">
-                    <section class="dropdown-items" id="dropdown-items-18"></section>
-                    
-                </div>
-                
-                <div class="dropdown-container">
-                    <input class="dropdown" id="search-19" type="text" placeholder="Red Side ban 4.">
-                    <section class="dropdown-items" id="dropdown-items-19"></section>
-                    
-                </div>
-                
-                <div class="dropdown-container">
-                    <input class="dropdown" id="search-20" type="text" placeholder="Red Side ban 5.">
-                    <section class="dropdown-items" id="dropdown-items-20"></section>
-                </div>
-                <!-- Tambahkan dropdown-container untuk ke-3 hingga ke-20 dengan pola yang sama -->
-            </div>
-            
-            <!-- Input untuk nama blue team -->
+            <!-- Input untuk panel blue team -->
             <div class="team-input-container">
-                <label><h2>Blue Team</h2>
-                    <input class="teams" id="team-1" type="text" value>
+                <label class="team-label"><h2>Blue Team</h2>
+                    <input class="teams" id="team-1" type="text" placeholder="Enter team name">
                 </label>
-                <label><h2>Team Logo</h2>
+                <label class="logo-label"><h2>Team Logo</h2>
                     <input class="file-logo" id="file-logo-1" type="file" accept="image/*">
                 </label>
                 <div class="checkbox-container">
@@ -469,12 +232,12 @@
                 </div>
             </div>
             
-            <!-- Input untuk nama red team -->
+            <!-- Input untuk panel red team -->
             <div class="team-input-container">
-                <label><h2>Red Team</h2>
-                    <input class="teams" id="team-2" type="text" value>
+                <label class="team-label"><h2>Red Team</h2>
+                    <input class="teams" id="team-2" type="text" placeholder="Enter team name">
                 </label>
-                <label><h2>Team Logo</h2>
+                <label class="logo-label"><h2>Team Logo</h2>
                     <input class="file-logo" id="file-logo-2" type="file" accept="image/*">
                 </label>
                 <div class="checkbox-container">
@@ -490,9 +253,261 @@
                     </label>
                 </div>
             </div>
+            
+            <!-- Input untuk nickname Blue team 1-5 -->
+            <div class="section-container">
+                <h2>Blue Nickname</h2>
+                <div class="inputs-container">
+                    <div class="input-nickname">
+                        <input class="nickname-field" id="input-1" type="text" placeholder="Blue Side Nickname 1"><br>
+                    </div>
+                    <div class="input-nickname">
+                        <input class="nickname-field" id="input-2" type="text" placeholder="Blue Side Nickname 2"><br>
+                    </div>
+                    <div class="input-nickname">
+                        <input class="nickname-field" id="input-3" type="text" placeholder="Blue Side Nickname 3"><br>
+                    </div>
+                    <div class="input-nickname">
+                        <input class="nickname-field" id="input-4" type="text" placeholder="Blue Side Nickname 4"><br>
+                    </div>
+                    <div class="input-nickname">
+                        <input class="nickname-field" id="input-5" type="text" placeholder="Blue Side Nickname 5"><br>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Input untuk nickname Red Team 6-10 -->
+            <div class="section-container">
+                <h2>Red Nickname</h2>
+                <div class="inputs-container">
+                    <div class="input-nickname">
+                        <input class="nickname-field" id="input-6" type="text" placeholder="Red Side Nickname 1"><br>
+                    </div>
+                    <div class="input-nickname">
+                        <input class="nickname-field" id="input-7" type="text" placeholder="Red Side Nickname 2"><br>
+                    </div>
+                    <div class="input-nickname">
+                        <input class="nickname-field" id="input-8" type="text" placeholder="Red Side Nickname 3"><br>
+                    </div>
+                    <div class="input-nickname">
+                        <input class="nickname-field" id="input-9" type="text" placeholder="Red Side Nickname 4"><br>
+                    </div>
+                    <div class="input-nickname">
+                        <input class="nickname-field" id="input-10" type="text" placeholder="Red Side Nickname 5"><br>
+                    </div>
+                </div>
+            </div>
+            
+            <!--Input untuk ban blue team 11-15 -->
+            <div class="section-container">
+                <h2>Blue Ban</h2> 
+                <div class="inputs-container">
+                    <!-- Setiap dropdown diberi ID unik berdasarkan indeks -->
+                    <div class="dropdown-container">
+                        <input class="dropdown" id="search-11" type="text" placeholder="Blue Side ban 1">
+                        <section class="dropdown-items" id="dropdown-items-11"></section>
+                    </div>
+                    
+                    <div class="dropdown-container">
+                        <input class="dropdown" id="search-12" type="text" placeholder="Blue Side ban 2">
+                        <section class="dropdown-items" id="dropdown-items-12"></section>
+                    </div>
+                    
+                    <div class="dropdown-container">
+                        <input class="dropdown" id="search-13" type="text" placeholder="Blue Side ban 3.">
+                        <section class="dropdown-items" id="dropdown-items-13"></section>
+                    </div>
+                    
+                    <div class="dropdown-container">
+                        <input class="dropdown" id="search-14" type="text" placeholder="Blue Side ban 4.">
+                        <section class="dropdown-items" id="dropdown-items-14"></section>
+                    </div>
+                    
+                    <div class="dropdown-container">
+                        <input class="dropdown" id="search-15" type="text" placeholder="Blue Side ban 5.">
+                        <section class="dropdown-items" id="dropdown-items-15"></section>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Input untuk blue team 16-20-->
+            <div class="section-container">
+                <h2>Red Ban</h2> 
+                <div class="inputs-container">
+                    <!-- Setiap dropdown diberi ID unik berdasarkan indeks -->
+                    <div class="dropdown-container">
+                        <input class="dropdown" id="search-16" type="text" placeholder="Red Side ban 1">
+                        <section class="dropdown-items" id="dropdown-items-16"></section>
+                    </div>
+                    
+                    <div class="dropdown-container">
+                        <input class="dropdown" id="search-17" type="text" placeholder="Red Side ban 2">
+                        <section class="dropdown-items" id="dropdown-items-17"></section>
+                    </div>
+                    
+                    <div class="dropdown-container">
+                        <input class="dropdown" id="search-18" type="text" placeholder="Red Side ban 3.">
+                        <section class="dropdown-items" id="dropdown-items-18"></section>
+                        
+                    </div>
+                    
+                    <div class="dropdown-container">
+                        <input class="dropdown" id="search-19" type="text" placeholder="Red Side ban 4.">
+                        <section class="dropdown-items" id="dropdown-items-19"></section>
+                        
+                    </div>
+                    
+                    <div class="dropdown-container">
+                        <input class="dropdown" id="search-20" type="text" placeholder="Red Side ban 5.">
+                        <section class="dropdown-items" id="dropdown-items-20"></section>
+                    </div>
+                    <!-- Tambahkan dropdown-container untuk ke-3 hingga ke-20 dengan pola yang sama -->
+                </div>
+            </div>
+            
+            <!--Input untuk pick blue team 1-5 -->
+            <div class="section-container">
+                <h2>Blue Pick</h2> 
+                <div class="inputs-container">
+                    <!-- Setiap dropdown diberi ID unik berdasarkan indeks -->
+                    <div class="pick-container">
+                        <div class="dropdown-container">
+                            <input class="dropdown" id="search-1" type="text" placeholder="Blue Side Pick 1">
+                            <section class="dropdown-items" id="dropdown-items-1"></section>
+                        </div>
+                        <div class="swap-button">
+                            <input class="swaper blue-swaper" id="swap-1" type="checkbox">
+                            <label class="border-box" for="swap-1">
+                                <div class="arrow">↑↓</div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="pick-container">
+                        <div class="dropdown-container">
+                            <input class="dropdown" id="search-2" type="text" placeholder="Blue Side Pick 2">
+                            <section class="dropdown-items" id="dropdown-items-2"></section>
+                        </div>
+                        <div class="swap-button">
+                            <input class="swaper blue-swaper" id="swap-2" type="checkbox">
+                            <label class="border-box" for="swap-2">
+                                <div class="arrow">↑↓</div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="pick-container">
+                        <div class="dropdown-container">
+                            <input class="dropdown" id="search-3" type="text" placeholder="Blue Side Pick 3.">
+                            <section class="dropdown-items" id="dropdown-items-3"></section>
+                        </div>
+                        <div class="swap-button">
+                            <input class="swaper blue-swaper" id="swap-3" type="checkbox">
+                            <label class="border-box" for="swap-3">
+                                <div class="arrow">↑↓</div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="pick-container">
+                        <div class="dropdown-container">
+                            <input class="dropdown" id="search-4" type="text" placeholder="Blue Side Pick 4.">
+                            <section class="dropdown-items" id="dropdown-items-4"></section>
+                        </div>
+                        <div class="swap-button">
+                            <input class="swaper blue-swaper" id="swap-4" type="checkbox">
+                            <label class="border-box" for="swap-4">
+                                <div class="arrow">↑↓</div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="pick-container">                
+                        <div class="dropdown-container">
+                            <input class="dropdown" id="search-5" type="text" placeholder="Blue Side Pick 5.">
+                            <section class="dropdown-items" id="dropdown-items-5"></section>
+                        </div>
+                        <div class="swap-button">
+                            <input class="swaper blue-swaper" id="swap-5" type="checkbox">
+                            <label class="border-box" for="swap-5">
+                                <div class="arrow">↑↓</div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!--Input untuk pick red team 6-10 -->
+            <div class="section-container">
+                <h2>Red Pick</h2> 
+                <div class="inputs-container">
+                    <!-- Setiap dropdown diberi ID unik berdasarkan indeks -->
+                    <div class="pick-container">
+                        <div class="dropdown-container">
+                            <input class="dropdown" id="search-6" type="text" placeholder="Red Side Pick 1">
+                            <section class="dropdown-items" id="dropdown-items-6"></section>
+                        </div>
+                        <div class="swap-button">
+                            <input class="swaper red-swaper" id="swap-6" type="checkbox">
+                            <label class="border-box" for="swap-6">
+                                <div class="arrow">↑↓</div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="pick-container">
+                        <div class="dropdown-container">
+                            <input class="dropdown" id="search-7" type="text" placeholder="Red Side Pick 2">
+                            <section class="dropdown-items" id="dropdown-items-7"></section>
+                        </div>
+                        <div class="swap-button">
+                            <input class="swaper red-swaper" id="swap-7" type="checkbox">
+                            <label class="border-box" for="swap-7">
+                                <div class="arrow">↑↓</div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="pick-container">
+                        <div class="dropdown-container">
+                            <input class="dropdown" id="search-8" type="text" placeholder="Red Side Pick 3.">
+                            <section class="dropdown-items" id="dropdown-items-8"></section>
+                        </div>
+                        <div class="swap-button">
+                            <input class="swaper red-swaper" id="swap-8" type="checkbox">
+                            <label class="border-box" for="swap-8">
+                                <div class="arrow">↑↓</div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="pick-container">
+                        <div class="dropdown-container">
+                            <input class="dropdown" id="search-9" type="text" placeholder="Red Side Pick 4.">
+                            <section class="dropdown-items" id="dropdown-items-9"></section>
+                        </div>
+                        <div class="swap-button">
+                            <input class="swaper red-swaper" id="swap-9" type="checkbox">
+                            <label class="border-box" for="swap-9">
+                                <div class="arrow">↑↓</div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="pick-container">
+                        <div class="dropdown-container">
+                            <input class="dropdown" id="search-10" type="text" placeholder="Red Side Pick 5.">
+                            <section class="dropdown-items" id="dropdown-items-10"></section>
+                        </div>
+                        <div class="swap-button">
+                            <input class="swaper red-swaper" id="swap-10" type="checkbox">
+                            <label class="border-box" for="swap-10">
+                                <div class="arrow">↑↓</div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>
-<!--Javascript-->
-<script src="script.js"></script>
 </html>

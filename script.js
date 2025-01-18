@@ -312,26 +312,18 @@ document.getElementById('reset-dropdowns').addEventListener('click', function() 
 
 
 // Fungsi untuk mereset nickname
-document.getElementById('reset-nickname-1').addEventListener('click', function() {
-    for(let i = 1; i <= 5; i++){
-        document.getElementById("input-" + i).value = '';
-        document.getElementById("output-" + i).textContent = '';
-    }
-});
-
-
-document.getElementById('reset-nickname-2').addEventListener('click', function() {
-    for(let i = 6; i <= 10; i++){
-        document.getElementById("input-" + i).value = '';
-        document.getElementById("output-" + i).textContent = '';
-    }
-});
+function ResetNickname() {
+    document.querySelectorAll('.nickname-field').forEach(input => {
+        input.value = '';
+        document.getElementById('output-' + input.id.replace('input-', '')).textContent = '';
+    });
+};
 
 
  // Fungsi untuk mengupdate output nickname
 document.querySelectorAll('.nickname-field').forEach(input =>{
     const inputElement = document.getElementById(input.id);
-    inputElement?.addEventListener("input", function() {
+    inputElement?.addEventListener('input', function() {
         let id = input.id.replace('input-','')
         updateNickname(id);
     });
@@ -396,12 +388,14 @@ function UpdateTeamName() {
 }
 
 
-// Fungsi untuk mereset gambar, nama tim, dan checkbox ke kondisi awal
+// Fungsi untuk mereset logo, nama tim, nama pemain, dan checkbox ke kondisi awal
 document.getElementById('reset-team').addEventListener('click', function(){
+    //reset nama team
     document.getElementById('team-1').value = "Team 1";
     document.getElementById('team-2').value = "Team 2";
     UpdateTeamName();
     
+    // reset logo
     document.getElementById('logo-1').src = "Assets/Other/80x80.png";
     document.getElementById('logo-2').src = "Assets/Other/80x80.png";
     
@@ -413,6 +407,8 @@ document.getElementById('reset-team').addEventListener('click', function(){
         document.getElementById(`win-check-${i}`).checked = false;
         document.getElementById(`extraImage-${i}`).style.display = "none";
     }
+    
+    ResetNickname()
 });
 
 
