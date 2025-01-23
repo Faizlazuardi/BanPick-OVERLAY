@@ -423,7 +423,7 @@ checkboxes.forEach(checkbox => {
 
 
 // Fungsi display nama turnament
-const tournamentnameInput = document.getElementById('tournamentnamemid');
+const tournamentnameInput = document.getElementById('tournament-name-input');
 tournamentnameInput.addEventListener('input', function() {
     const tournamentnameOutput = document.getElementById('tournamentnameOutput');
     tournamentnameOutput.textContent = tournamentnameInput.value;
