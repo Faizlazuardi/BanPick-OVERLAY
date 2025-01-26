@@ -18,7 +18,7 @@ body {
 
 .overlay {
     width: 1500px;
-    margin: 15px 0;
+    margin: 25px 0;
     display: grid;
     grid-template-areas: "team-1 ban-1 tournament-name ban-2 team-2"
         "pick-1 pick-1 tournament-info pick-2 pick-2";
@@ -137,21 +137,12 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     width: 310px;
     height: 210px;
     background-image: url("Assets/Other/Tounamentinfobg.jpg");
     background-size: 110%;
     background-position: top;
-}
-
-
-/*Logo Tournament*/
-.tournament-logo {
-    width: 150px;
-    height: 75px;
-    padding: 15px 0px;
-    overflow: hidden;
-
 }
 
 .logo-prop {
@@ -164,43 +155,43 @@ body {
 
 
 /*Logo Team*/
-.display-info {
+.match-display {
     width: 250px;
-    height: 80px;
     display: flex;
     justify-content: space-between;
 }
 
-.blue-info, .red-info {
+.team-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 5px;
 }
 
-.logo {
+.team-logo {
     justify-content: space-around;
     width: 80px;
     height: 80px;
     object-fit: contain;
 }
 
-.team-win-bar {
+.team-score-indicator {
     display: flex;
+    gap: 3px;
 }
 
-.win-bar {
+.score-indicator {
     width: 27px;
     height: 10px;
-    margin: 0px 1px;
 }
 
-.extraImage {
+.win-icon {
     width: 27px;
     height: 10px;
     display: none;
 }
 
-.vs-logo {
+.versus-text {
     font-size: 3rem;
     display: flex;
     align-items: center;
@@ -232,6 +223,11 @@ body {
 
 .control-button {
     height: 30px;
+    width: 100px;
+}
+
+#reset-dropdowns{
+    width: 150px;
 }
 
 
@@ -287,12 +283,6 @@ body {
 .nickname-field {
     width: 130px;
     padding: 8px;
-}
-
-.nickname-reset-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
 }
 
 /*Input pick*/

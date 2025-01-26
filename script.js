@@ -335,7 +335,7 @@ function updateNickname(id) {
 }
 
 
-// Fungsi untuk menukar semua (nama tim, nickname, gambar tim, dan status checkbox 1-3 dengan 4-6)
+// Fungsi untuk menukar semua (nama tim, nickname pemain, gambar tim, dan status checkbox 1-3 dengan 4-6)
 document.getElementById('switch-team').addEventListener('click', function() {
     //tukar nickname
     for (let i = 1; i <= 5; i++) {
@@ -359,17 +359,17 @@ document.getElementById('switch-team').addEventListener('click', function() {
     
     // Tukar status checkbox dan visibilitas gambar tambahan
     for (let i = 1; i <= 3; i++) {
-        const checkboxA = document.getElementById(`win-check-${i}`);
-        const checkboxB = document.getElementById(`win-check-${i + 3}`);
-        const extraImageA = document.getElementById(`extraImage-${i}`);
-        const extraImageB = document.getElementById(`extraImage-${i + 3}`);
+        const checkbox1 = document.getElementById(`win-check-${i}`);
+        const checkbox2 = document.getElementById(`win-check-${i + 3}`);
+        const winIcon1 = document.getElementById(`win-icon-${i}`);
+        const winIcon2 = document.getElementById(`win-icon-${i + 3}`);
         
         // Tukar status checkbox
-        [checkboxA.checked, checkboxB.checked] = [checkboxB.checked, checkboxA.checked];
+        [checkbox1.checked, checkbox2.checked] = [checkbox2.checked, checkbox1.checked];
         
         // Tukar tampilan gambar berdasarkan checkbox
-        extraImageA.style.display = checkboxA.checked ? "block" : "none";
-        extraImageB.style.display = checkboxB.checked ? "block" : "none";
+        winIcon1.style.display = checkbox1.checked ? "block" : "none";
+        winIcon2.style.display = checkbox2.checked ? "block" : "none";
     }
 });
 
@@ -388,7 +388,7 @@ function UpdateTeamName() {
 }
 
 
-// Fungsi untuk mereset logo, nama tim, nama pemain, dan checkbox ke kondisi awal
+// Fungsi untuk mereset logo, nama tim, nickname pemain, dan checkbox ke kondisi awal
 document.getElementById('reset-team').addEventListener('click', function(){
     //reset nama team
     document.getElementById('team-1').value = "Team 1";
@@ -405,9 +405,10 @@ document.getElementById('reset-team').addEventListener('click', function(){
     // Reset checkbox dan gambar tambahan
     for (let i = 1; i <= 6; i++) {
         document.getElementById(`win-check-${i}`).checked = false;
-        document.getElementById(`extraImage-${i}`).style.display = "none";
+        document.getElementById(`win-icon-${i}`).style.display = "none";
     }
-    
+
+    // Reset nickname
     ResetNickname()
 });
 
@@ -416,7 +417,7 @@ document.getElementById('reset-team').addEventListener('click', function(){
 const checkboxes = document.querySelectorAll('.win-check')
 checkboxes.forEach(checkbox => {
     checkbox.addEventListener('click', function(){
-        const image = document.getElementById(`extraImage-${checkbox.id.replace('win-check-','')}`);
+        const image = document.getElementById(`win-icon-${checkbox.id.replace('win-check-','')}`);
         image.style.display = checkbox.checked ? "block" : "none";
     })
 });
