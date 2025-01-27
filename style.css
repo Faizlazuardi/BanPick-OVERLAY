@@ -92,7 +92,6 @@ body {
 .pick-display {
     width: 119px;
     height: 210px;
-    background-color: blueviolet;
     overflow: hidden;
     background-image: url("Assets/Other/Pickbg.png");
     background-position: center;
@@ -175,7 +174,17 @@ body {
     object-fit: contain;
 }
 
-.team-score-indicator {
+.team-score-indicator-1 {
+    width: 87px;
+    height: 10px;
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 3px;
+}
+
+.team-score-indicator-2 {
+    width: 87px;
+    height: 10px;
     display: flex;
     gap: 3px;
 }
