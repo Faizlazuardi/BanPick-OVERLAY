@@ -432,9 +432,9 @@ tournamentnameInput.addEventListener('input', function() {
 
 // Fungsi untuk memuat logo tim dari file lokal
 document.querySelectorAll('.file-logo').forEach(input => {
-    input.addEventListener('change', function(event) {
+    input.addEventListener('change', function() {
         const imgId = input.id.replace('file-logo-', 'logo-');
         const img = document.getElementById(imgId);
-        img.src = URL.createObjectURL(event.target.files[0]);
+        img.src = URL.createObjectURL(input.files[0]);
     });
 });
