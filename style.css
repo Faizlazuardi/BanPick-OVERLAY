@@ -69,7 +69,7 @@ body {
     height: 65px;
     background-color: aqua;
     overflow: hidden;
-    background-image: url("Assets/Other/ban.png");
+    background-image: url("Assets/images/ban.png");
     background-position: center;
     background-size: 100%;
     filter: grayscale(100%);
@@ -89,7 +89,7 @@ body {
     width: 119px;
     height: 210px;
     overflow: hidden;
-    background-image: url("Assets/Other/Pickbg.png");
+    background-image: url("Assets/images/Pickbg.png");
     background-position: center;
     background-size: 100%;
     overflow: hidden;
@@ -134,7 +134,7 @@ body {
     justify-content: center;
     width: 310px;
     height: 210px;
-    background-image: url("Assets/Other/Tounamentinfobg.jpg");
+    background-image: url("Assets/images/Tounamentinfobg.jpg");
     background-size: 110%;
     background-position: top;
 }
